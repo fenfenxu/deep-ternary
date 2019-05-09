@@ -114,8 +114,7 @@ class Autoencoder():
                 biases_initializer=tf.constant_initializer(0),
                 activation_fn=None,
                 weights_regularizer=slim.l2_regularizer(weight_decay)): 
-                print 'build_reconstructor: %s, %s' % (inp, output_dim)
-                x_hat = slim.fully_connected(inp, output_dim)
+                x_hat = slim.fully_connected(inp, int(output_dim))
                 if self.use_bn:
                     x_hat = self.bn_layer(x_hat, scope='bn')
         return x_hat
