@@ -25,6 +25,8 @@ def arr_to_string(arr):
         arr[i] = str(arr[i])
     return ','.join(arr)
 
+
+
 # model configs
 tf.flags.DEFINE_float('patch_size', ModelConfig.patch_size,'')
 tf.flags.DEFINE_float('sensing_rate', ModelConfig.sensing_rate,'')
@@ -35,7 +37,7 @@ tf.flags.DEFINE_string('activation_fn', ModelConfig.activation_fn,'')
 tf.flags.DEFINE_float('weight_spars_rate', ModelConfig.weight_spars_rate,'')
 
 # training configs
-tf.flags.DEFINE_boolean('scale', TrainConfig.scale,'')
+tf.flags.DEFINE_float('scale', TrainConfig.scale,'')
 tf.flags.DEFINE_float('mean_value', TrainConfig.mean_value,'')
 tf.flags.DEFINE_integer('batch_size', TrainConfig.batch_size,'')
 tf.flags.DEFINE_string('optimizer', TrainConfig.optimizer,'')
@@ -44,5 +46,9 @@ tf.flags.DEFINE_string('lr_update', TrainConfig.lr_update,'')
 tf.flags.DEFINE_float('lr_decay_factor', TrainConfig.lr_decay_factor,'')
 tf.flags.DEFINE_integer('num_epochs_per_decay', TrainConfig.num_epochs_per_decay,'')
 tf.flags.DEFINE_float('weight_decay', TrainConfig.weight_decay,'')
+
+
+tf.flags.DEFINE_string('output_dir', '', 'init value')
+tf.flags.DEFINE_string('log_dir', '','init value')
 
 CONFIGS = tf.app.flags.FLAGS

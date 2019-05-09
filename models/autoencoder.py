@@ -21,6 +21,8 @@ class Autoencoder():
 
         self.y, self.sen_w, self.sen_wsb, self.w_scale = self.build_sparse_binary_sensing_matrix(self.x, self.x_dim, self.y_dim, 'sensing')
         self.hidden = self.build_nonlinear_decoder(self.y, self.hidden_sizes, weight_decay=self.weight_decay, scope='decoder')
+        print(self.x_dim)
+        print(self.weight_decay)
         self.x_hat = self.build_reconstructor(self.hidden, self.x_dim, weight_decay=self.weight_decay, scope='reconstructor')
 
         # loss functions
