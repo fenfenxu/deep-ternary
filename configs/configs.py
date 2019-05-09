@@ -21,11 +21,9 @@ class TrainConfig(object):
     weight_decay = 1e-3         # weight for l2 regularization
 
 def arr_to_string(arr):
-    for i in xrange(len(arr)):
+    for i in range(len(arr)):
         arr[i] = str(arr[i])
     return ','.join(arr)
-
-
 
 # model configs
 tf.flags.DEFINE_float('patch_size', ModelConfig.patch_size,'')
@@ -46,9 +44,5 @@ tf.flags.DEFINE_string('lr_update', TrainConfig.lr_update,'')
 tf.flags.DEFINE_float('lr_decay_factor', TrainConfig.lr_decay_factor,'')
 tf.flags.DEFINE_integer('num_epochs_per_decay', TrainConfig.num_epochs_per_decay,'')
 tf.flags.DEFINE_float('weight_decay', TrainConfig.weight_decay,'')
-
-
-tf.flags.DEFINE_string('output_dir', '', 'init value')
-tf.flags.DEFINE_string('log_dir', '','init value')
 
 CONFIGS = tf.app.flags.FLAGS

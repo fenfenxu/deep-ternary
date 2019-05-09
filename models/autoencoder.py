@@ -21,8 +21,6 @@ class Autoencoder():
 
         self.y, self.sen_w, self.sen_wsb, self.w_scale = self.build_sparse_binary_sensing_matrix(self.x, self.x_dim, self.y_dim, 'sensing')
         self.hidden = self.build_nonlinear_decoder(self.y, self.hidden_sizes, weight_decay=self.weight_decay, scope='decoder')
-        print(self.x_dim)
-        print(self.weight_decay)
         self.x_hat = self.build_reconstructor(self.hidden, self.x_dim, weight_decay=self.weight_decay, scope='reconstructor')
 
         # loss functions
@@ -100,7 +98,7 @@ class Autoencoder():
                 biases_initializer=tf.constant_initializer(0),
                 activation_fn=self.transfer,
                 weights_regularizer=slim.l2_regularizer(weight_decay)):              
-                for i in xrange(len(hidden_sizes)):
+                for i in range(len(hidden_sizes)):
                     hidden = slim.fully_connected(hidden, hidden_sizes[i], scope='fc%d'%i)
                     if self.use_bn:
                         hidden = self.bn_layer(hidden, scope='bn%d'%i)
@@ -230,7 +228,7 @@ class Autoencoder():
 
     def string_to_array(self, str, dtype='int'):
         arr = str.strip().split(',')
-        for i in xrange(len(arr)):
+        for i in range(len(arr)):
             if dtype == 'int':
                 arr[i] = int(arr[i])
             elif dtype == 'float':

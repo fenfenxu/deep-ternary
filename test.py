@@ -21,7 +21,6 @@ def list_image(folder):
     files = os.listdir(folder)
     img_list = []
     for filename in files:
-	filename = filename.strip()
         flag = filename.endswith('.jpg') or filename.endswith('.png') or filename.endswith('.tif')
         if not flag:
             continue
@@ -48,8 +47,8 @@ def overlap_inference(model, img, bs, stride=8):
     ite = 0
     n_patches = (int(H/stride) + 1) * (int(W/stride) + 1)
     patches = np.zeros((n_patches, B*B), dtype=np.float32)
-    for y in xrange(0, H, stride):
-        for x in xrange(0, W, stride):
+    for y in range(0, H, stride):
+        for x in range(0, W, stride):
             if y + B >= H or x + B >= W:
                 continue
             patch = big_img[y:y+B,x:x+B]
@@ -71,8 +70,8 @@ def overlap_inference(model, img, bs, stride=8):
             break
         start = end
     ite = 0
-    for y in xrange(0, H, stride):
-        for x in xrange(0, W, stride):
+    for y in range(0, H, stride):
+        for x in range(0, W, stride):
             if y + B >= H or x + B >= W:
                 continue
             recon_img[y:y+B,x:x+B] += recons[ite,:].reshape(B,B)
@@ -117,7 +116,7 @@ def main(unused_argv):
         psnr_ = psnr(gray_img.astype(np.float32), recon_img)
         print('Image %s, psnr: %f' %(img_fname, psnr_))
         sum_psnr += psnr_
-    mean_psnr = sum_psnr / len(test_list)
+    mean_psnr = sum_psnr#/ len(test_list)
 
     print('---------------------------')
     print('Mean PSNR: %f' %mean_psnr)

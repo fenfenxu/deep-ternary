@@ -30,7 +30,7 @@ class DataLoader():
                 data = data[:n_samples,:]
             np_data = np.array(data)
             toc = time.time()
-            print 'Finish reading %d samples in %f seconds' % (data.shape[0], toc - tic) 
+            print('Finish reading %d samples in %f seconds' %(data.shape[0], toc - tic) )
             return np_data
 
     def load_data(self):
